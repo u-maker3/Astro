@@ -120,5 +120,45 @@ el('copy').onclick=async()=>{let t=resultText();try{await navigator.clipboard.wr
 function wrap(ctx,text,maxWidth){const lines=[];for(const para of text.split('\n')){if(!para){lines.push('');continue}let line='';for(const char of para){if(ctx.measureText(line+char).width>maxWidth&&line){lines.push(line);line=char}else line+=char}lines.push(line)}return lines}
 el('closeSave').onclick=()=>{el('saveOverlay').classList.remove('open');el('savePreview').removeAttribute('src')};
 el('saveOverlay').addEventListener('click',e=>{if(e.target===el('saveOverlay'))el('closeSave').click()});
-el('save').onclick=()=>{if(!draw)return;try{const canvas=document.createElement('canvas');canvas.width=1080;const ctx=canvas.getContext('2d');if(!ctx)throw Error('Canvasが使えません');const lines=wrap(ctx,resultText(),920);canvas.height=Math.max(1350,270+lines.length*56+150);const grd=ctx.createLinearGradient(0,0,1080,canvas.height);grd.addColorStop(0,'#39204e');grd.addColorStop(1,'#0b1730');ctx.fillStyle=grd;ctx.fillRect(0,0,1080,canvas.height);ctx.strokeStyle='#e7bd78';ctx.lineWidth=7;ctx.strokeRect(24,24,1032,canvas.height-48);ctx.fillStyle='#e7c88b';ctx.textAlign='center';ctx.font='44px serif';ctx.fillText('☉   ☽   ♈   ♎   ✧   ♓   ♌',540,100);ctx.textAlign='left';ctx.font='bold 54px sans-serif';ctx.fillText('星のサイコロ相談室',70,170);ctx.fillStyle='#f7f0ff';ctx.font='34px sans-serif';let y=245;for(const line of lines){ctx.fillText(line,75,y);y+=56}ctx.fillStyle='#c9b3e1';ctx.font='25px sans-serif';ctx.fillText('みろく流 ASTRO DICE ／ うめこ屋',75,canvas.height-75);const data=canvas.toDataURL('image/png');el('savePreview').src=data;el('saveOverlay').classList.add('open');el('saveHelp').textContent='保存用画像を表示したで。画像を長押しして保存してな。'}catch(e){el('saveHelp').textContent='画像生成エラー：'+e.message;alert('画像を作れへんかった：'+e.message)}};
+// 保存カードは描画時と計測時で同じフォントを使用する。
+function cardLines(ctx, text, font, width){ctx.font=font;return wrap(ctx,text,width)}
+function loadCardArt(){return new Promise(resolve=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>resolve(null);img.src='astro_result.png';if(img.complete&&img.naturalWidth)resolve(img)})}
+function cardSection(ctx,label,text,x,y,width,bodyFont){
+  ctx.font='bold 35px -apple-system,"Hiragino Sans",sans-serif';ctx.fillStyle='#f7d596';ctx.fillText(label,x,y);y+=60;
+  ctx.font=bodyFont;ctx.fillStyle='#f8f1ff';
+  for(const line of wrap(ctx,text,width)){if(line){ctx.fillText(line,x,y)}y+=51}
+  return y+30;
+}
+el('save').onclick=async()=>{
+ if(!draw)return;
+ const btn=el('save');btn.disabled=true;btn.textContent='📸 画像を作成中…';
+ try{
+  const d=data(),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');
+  if(!ctx)throw Error('Canvasが使えません');
+  const W=1080,pad=88,usable=W-pad*2,bodyFont='32px -apple-system,"Hiragino Sans","Yu Gothic",sans-serif';
+  const intro=mode==='astro'?d.reading:`${d.c[2]}\n\n${d.p[1]}の「${d.p[2]}」を、${d.s[1]}の性質と第${draw[2]+1}ハウスの「${d.h[0]}」から読むで。`;
+  const sections=[['✦ 今回のテーマ',d.headline],['✧ 星からのメッセージ',intro],['✦ 現実での活かし方',d.action]];
+  if(mode==='black')sections.push(['😈 黒うめこの監査結果',d.black]);
+  // 必ず本文フォントを設定してから折り返し・高さを計測。
+  let estimated=450;
+  for(const [label,body] of sections){estimated+=60+cardLines(ctx,body,bodyFont,usable).length*51+30}
+  const art=await loadCardArt();const artHeight=art?380:0;
+  canvas.width=W;canvas.height=Math.ceil(Math.max(1500,estimated+artHeight+240));
+  const h=canvas.height,gr=ctx.createLinearGradient(0,0,W,h);gr.addColorStop(0,'#39204e');gr.addColorStop(.55,'#211839');gr.addColorStop(1,'#0b1730');ctx.fillStyle=gr;ctx.fillRect(0,0,W,h);
+  ctx.strokeStyle='#e7bd78';ctx.lineWidth=7;ctx.strokeRect(24,24,W-48,h-48);ctx.lineWidth=2;ctx.strokeRect(40,40,W-80,h-80);
+  ctx.textAlign='center';ctx.fillStyle='#e7c88b';ctx.font='45px serif';ctx.fillText('☉   ☽   ♈   ♎   ✧   ♓   ♌',W/2,110);
+  ctx.font='bold 53px -apple-system,"Hiragino Sans",sans-serif';ctx.fillText('星のサイコロ相談室',W/2,184);
+  ctx.font='28px -apple-system,"Hiragino Sans",sans-serif';ctx.fillStyle='#dcc8ee';ctx.fillText(mode==='astro'?'🔮 本格占星術':'😈 黒うめこ',W/2,238);
+  ctx.textAlign='left';let y=310;ctx.font=bodyFont;ctx.fillStyle='#f8f1ff';
+  for(const line of wrap(ctx,'質問：'+d.c[2],usable)){ctx.fillText(line,pad,y);y+=50}
+  ctx.fillStyle='#f4d598';ctx.font='bold 31px -apple-system,"Hiragino Sans",sans-serif';
+  for(const line of wrap(ctx,`${d.p[1]} × ${d.s[1]} × 第${draw[2]+1}ハウス`,usable)){ctx.fillText(line,pad,y);y+=50}y+=40;
+  for(const [label,body] of sections)y=cardSection(ctx,label,body,pad,y,usable,bodyFont);
+  if(art){const maxW=usable,maxH=artHeight;const scale=Math.min(maxW/art.width,maxH/art.height);const dw=art.width*scale,dh=art.height*scale;ctx.drawImage(art,(W-dw)/2,y+12,dw,dh);y+=dh+36}
+  ctx.font='24px -apple-system,"Hiragino Sans",sans-serif';ctx.fillStyle='#cab9dc';ctx.fillText('※象徴による自己理解のヒントです。',pad,Math.min(y+30,h-132));ctx.fillStyle='#e7c88b';ctx.fillText('みろく流 ASTRO DICE ／ うめこ屋',pad,h-78);
+  el('savePreview').src=canvas.toDataURL('image/png');el('saveOverlay').classList.add('open');
+  el('saveHelp').textContent='保存画像を表示したで。画像を長押しして保存してな。';
+ }catch(e){el('saveHelp').textContent='画像生成エラー：'+e.message;alert('画像を作れへんかった：'+e.message)}
+ finally{btn.disabled=false;btn.textContent='📸 画像保存'}
+};
 </script></body></html>
