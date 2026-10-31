@@ -85,7 +85,7 @@ body.darkmode .result{border-color:#d8a15e;background:linear-gradient(145deg,#35
 @keyframes zodiacSpin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.zodiac-ring{animation:none}}
 .result .lead{border-left:3px solid #efc987;padding-left:12px}.result .bodytext{line-height:2.05}
-</style></head><body><main class="app"><header><div class="eyebrow">UMЕKO ASTRO DICE</div><h1>🎲 星のサイコロ相談室</h1><p>振ってみな。星は何て言うてる？</p></header><img class="scene-art scene-start" src="astro_start.png" alt="うめこが星のサイコロ相談室へご案内" onerror="this.style.display='none'"><div class="zodiac-orbit" aria-label="ゆっくり回転する12星座盤"><div class="zodiac-ring" id="zodiacRing"></div><div class="zodiac-center">☉</div><div class="zodiac-caption">✦ CELESTIAL ZODIAC ✦</div></div><section class="panel"><h2>① 何について聞いてみる？</h2><div class="choices" id="choices"></div><div class="selected-question" id="questionText" aria-live="polite"></div></section><section class="panel"><h2>② 鑑定モードを選ぶ</h2><div class="modebar"><button class="mode active" data-mode="astro">🔮 本格占星術</button><button class="mode" data-mode="black">😈 黒うめこ</button></div><p class="small">出目はそのまま、読み方の口調が変わるで。</p></section><section class="panel"><h2>③ ダイスを振る</h2><img class="scene-art scene-rolling" src="astro_rolling.png" alt="うめこがダイスを応援中" onerror="this.style.display='none'"><div class="diceRow"><canvas id="diceStage" aria-label="3つのダイスが転がるアニメーション"></canvas><div class="die" id="d0"><small>天体</small><div class="sym">☉</div><strong>太陽</strong></div><div class="die" id="d1"><small>星座</small><div class="sym">♌</div><strong>獅子座</strong></div><div class="die" id="d2"><small>ハウス</small><div class="sym">Ⅴ</div><strong>第5ハウス</strong></div></div><button id="roll" class="primary">🎲 3つのダイスを振る！</button><p class="small">※12面ダイス3個の独立抽選。演出中は連続タップ不可。</p></section><section class="panel result" id="result"><img id="resultCharacter" class="scene-art scene-result" src="astro_result.png" alt="うめこが鑑定結果をお届け" onerror="this.style.display='none'"><span class="tag" id="resultTag"></span><h2>✨ 星からのメッセージ</h2><div class="lead" id="lead"></div><div class="bodytext" id="reading"></div><h2 style="margin-top:20px">🌱 現実での活かし方</h2><div class="bodytext" id="action"></div><div id="blackBox" class="black hidden" style="margin-top:16px"><b>😈 黒うめこの監査結果</b><div class="bodytext" id="blackText"></div></div><h2 style="margin-top:22px">📖 もっと詳しく見る</h2><div class="details" id="details"></div><div class="actions" style="margin-top:20px"><button id="save">📸 画像保存</button><button id="copy">📋 結果コピー</button></div><p class="small" id="saveHelp">iPhoneでは画像を開いて長押し保存できるで。</p></section><div class="footer">改訂版 10/31-B · 参考：『ASTRO DICE／みろくだいす』369イベント実行委員（2025年11月発行）<br>象徴を使った自己理解のための読み解きです。未来や他人の気持ちを断定するものではありません。</div></main><div id="saveOverlay" role="dialog" aria-modal="true" aria-label="鑑定画像を保存"><p>📸 画像を長押しして「写真に保存」してな！</p><img id="savePreview" alt="保存用の鑑定画像"><button id="closeSave" type="button">✕ 閉じる</button></div><script>
+</style></head><body><main class="app"><header><div class="eyebrow">UMЕKO ASTRO DICE</div><h1>🎲 星のサイコロ相談室</h1><p>振ってみな。星は何て言うてる？</p></header><img class="scene-art scene-start" src="astro_start.png" alt="うめこが星のサイコロ相談室へご案内" onerror="this.style.display='none'"><div class="zodiac-orbit" aria-label="ゆっくり回転する12星座盤"><div class="zodiac-ring" id="zodiacRing"></div><div class="zodiac-center">☉</div><div class="zodiac-caption">✦ CELESTIAL ZODIAC ✦</div></div><section class="panel"><h2>① 何について聞いてみる？</h2><div class="choices" id="choices"></div><div class="selected-question" id="questionText" aria-live="polite"></div></section><section class="panel"><h2>② 鑑定モードを選ぶ</h2><div class="modebar"><button class="mode active" data-mode="astro">🔮 本格占星術</button><button class="mode" data-mode="black">😈 黒うめこ</button></div><p class="small">出目はそのまま、読み方の口調が変わるで。</p></section><section class="panel"><h2>③ ダイスを振る</h2><img class="scene-art scene-rolling" src="astro_rolling.png" alt="うめこがダイスを応援中" onerror="this.style.display='none'"><div class="diceRow"><canvas id="diceStage" aria-label="3つのダイスが転がるアニメーション"></canvas><div class="die" id="d0"><small>天体</small><div class="sym">☉</div><strong>太陽</strong></div><div class="die" id="d1"><small>星座</small><div class="sym">♌</div><strong>獅子座</strong></div><div class="die" id="d2"><small>ハウス</small><div class="sym">Ⅴ</div><strong>第5ハウス</strong></div></div><button id="roll" class="primary">🎲 3つのダイスを振る！</button><p class="small">※12面ダイス3個の独立抽選。演出中は連続タップ不可。</p></section><section class="panel result" id="result"><img id="resultCharacter" class="scene-art scene-result" src="astro_result.png" alt="うめこが鑑定結果をお届け" onerror="this.style.display='none'"><span class="tag" id="resultTag"></span><h2>✨ 星からのメッセージ</h2><div class="lead" id="lead"></div><div class="bodytext" id="reading"></div><h2 style="margin-top:20px">🌱 現実での活かし方</h2><div class="bodytext" id="action"></div><div id="blackBox" class="black hidden" style="margin-top:16px"><b>😈 黒うめこの監査結果</b><div class="bodytext" id="blackText"></div></div><h2 style="margin-top:22px">📖 もっと詳しく見る</h2><div class="details" id="details"></div><div class="actions" style="margin-top:20px"><button id="save">📸 画像保存</button><button id="copy">📋 結果コピー</button></div><p class="small" id="saveHelp">iPhoneでは画像を開いて長押し保存できるで。</p></section><div class="footer">改訂版 10/31-B · 参考：『ASTRO DICE／みろくだいす』369イベント実行委員（2025年11月発行）<br>象徴を使った自己理解のための読み解きです。未来や他人の気持ちを断定するものではありません。</div></main><div id="saveOverlay" role="dialog" aria-modal="true" aria-label="鑑定画像を保存"><p id="saveOverlayHelp">📸 画像を長押しして「写真に保存」してな！</p><div id="pageControls" style="display:none;align-items:center;gap:12px;color:#ffe3a9"><button id="prevPage">◀ 前へ</button><span id="pageCounter"></span><button id="nextPage">次へ ▶</button></div><img id="savePreview" alt="保存用の鑑定画像"><button id="closeSave" type="button">✕ 閉じる</button></div><script>
 const P=[["☉", "太陽", "自分らしさ・目的", "自分の意思や目標を明確にする", "主役を誰かに譲りっぱなしにせんとき"], ["☽", "月", "感情・安心", "心の安心と素直な気持ちを大切にする", "気持ちにフタして平気な顔せんとき"], ["☿", "水星", "思考・伝達", "情報を整理して言葉にする", "察してもらう前に言葉にしよか"], ["♀", "金星", "愛・楽しみ・美", "心地よさと人との調和を育てる", "好かれるためだけに自分を安売りせんとき"], ["♂", "火星", "行動・エネルギー", "迷いを行動に変えて一歩踏み出す", "考えてるだけで走った気にならんとき"], ["♃", "木星", "拡大・発展", "可能性を広げて学びを増やす", "話だけ大きくして満足せんとき"], ["♄", "土星", "試練・努力", "責任と継続で土台を整える", "面倒な基本を飛ばして近道探さんとき"], ["♅", "天王星", "革新・自由", "古い習慣を見直して新しい方法を試す", "変わりたい言いながら昨日と同じことしてへん？"], ["♆", "海王星", "夢・直感", "想像力を活かしつつ現実も確かめる", "夢はええけど確認作業も忘れんとき"], ["♇", "冥王星", "変容・再生", "根本的な見直しと手放しに向き合う", "もう終わってること握りしめんとき"], ["☊", "ドラゴンヘッド", "成長・向かう方向", "慣れない挑戦にも目を向ける", "いつもの安全地帯から片足出してみ"], ["☋", "ドラゴンテール", "慣れたパターン・過去", "慣れたやり方を振り返って選び直す", "昔の成功例を永久保存せんとき"]],S=[["♈", "牡羊座", "勢いよく", "まず小さく始める", "スタート・情熱・勢い", "鉄製品・帽子・ヘアアクセサリー"], ["♉", "牡牛座", "じっくり着実に", "五感と自分のペースを大切にする", "安定・感覚・物質", "ネックレス・スカーフ・香水・アロマ"], ["♊", "双子座", "軽やかに対話しながら", "情報を集めて伝える", "情報・会話・軽やかさ", "文房具・スマホ・雑誌・ブレスレット・手袋"], ["♋", "蟹座", "思いやりをもって", "安心できるつながりを守る", "家族・優しさ・感情", "銀製品・食器・家庭用雑貨・家具"], ["♌", "獅子座", "堂々と創造的に", "自分の魅力を表現する", "自信・誇り・華やかさ", "貴金属・楽器・高級品・ハートモチーフ"], ["♍", "乙女座", "丁寧に具体的に", "細部を整えて役立てる", "整理・分析・健康", "手帳・写真・オルゴール・薬やサプリメント"], ["♎", "天秤座", "バランスを取りながら", "相手と自分の希望をすり合わせる", "バランス・美・人間関係", "化粧品・洋服・鏡・花柄モチーフ"], ["♏", "蠍座", "深く集中して", "本音と信頼を見つめる", "深さ・集中・絆", "キャンドル・革製品・お守り・占いグッズ"], ["♐", "射手座", "視野を広く自由に", "未知の学びや挑戦に触れる", "冒険・自由・発展", "本・輸入品・地球儀・旅行グッズ"], ["♑", "山羊座", "計画的に粘り強く", "目標までの段取りを組む", "社会・努力・責任", "アンティーク・ジュエリー・辞書・形見"], ["♒", "水瓶座", "独自の視点で", "常識に縛られず工夫する", "革新・個性・理想", "水晶・星柄・スケルトン・蛍光"], ["♓", "魚座", "感性と共感を活かして", "直感を受け止めて形にする", "優しさ・夢・共感", "靴・靴下・アンクレット・浄化グッズ"]],H=[["自分自身", "自分らしさや第一印象", "自然の中・パワースポット"], ["お金・才能", "収入・持ち物・価値観", "寝室・飲食店"], ["学び・言葉", "会話・情報・身近な学び", "学校やスクール・近所"], ["家・基盤", "家族・居場所・心の土台", "家・地元・女性が集まる場所"], ["恋愛・創造", "趣味・自己表現・楽しみ", "イベント・ホール・ライブ・趣味の場"], ["仕事・健康", "日々の仕事・習慣・セルフケア", "職場・ジム・習い事"], ["人間関係", "対等な関係・パートナーシップ", "パーティー・街・百貨店"], ["絆・再生", "深い絆・共有・変化", "バーや酒場・夜の街・旅先・占いの館"], ["旅・学問", "専門的な学び・遠方・世界観", "神社・仏閣・旅先・図書館"], ["社会・使命", "キャリア・社会的役割・目標", "公共施設・博物館・歴史的な場所"], ["未来・仲間", "友人・コミュニティ・未来の理想", "メディア・SNS・コミュニティ"], ["潜在意識", "休息・内面・目に見えない感情", "温泉・癒しの場・おしゃれな町"]],Q=[["💕", "恋愛", "気になる人との距離を縮めるには？", "対話の仕方と信頼の育て方", "相手の反応を確かめながら一歩ずつ交流する"], ["💕", "恋愛", "今の恋愛で大切にしたいことは？", "愛情と自分の望みのバランス", "自分が大切にしたいことを一つ言葉にする"], ["💕", "恋愛", "パートナーとの関係を良くするには？", "日常のすれ違いと協力", "要望を責めずに具体的に伝える"], ["💕", "恋愛", "恋愛で繰り返す自分の課題は？", "繰り返しやすい反応や思い込み", "似た場面での自分の反応を振り返る"], ["💕", "恋愛", "新しい出会いに向けて意識することは？", "自分らしい交流と出会い方", "無理なく参加できる交流の場を探す"], ["💼", "仕事", "今の仕事で意識することは？", "役割と日々の優先順位", "今週の優先事項を一つ決める"], ["💼", "仕事", "職場の人間関係を良くするには？", "仕事上の対話と境界線", "期待と役割を確認する"], ["💼", "仕事", "転職を考えるうえでのヒントは？", "働き方の価値観と準備", "辞めたい理由と次に求める条件を分けて書く"], ["💼", "仕事", "自分の才能をどう活かせばいい？", "得意な行動と貢献の仕方", "人に喜ばれた経験を一つ振り返る"], ["💼", "仕事", "新しい仕事や活動を始めるには？", "始動に必要な段取りと協力", "小さく試せる第一歩を決める"], ["💰", "お金", "お金との付き合い方を見直すには？", "安心と支出の価値観", "何にお金を使うと納得できるか整理する"], ["💰", "お金", "収入を増やすために意識することは？", "提供価値と現実的な機会", "自分が提供できる価値を具体化する"], ["💰", "お金", "自分の価値をどう伝えたらいい？", "魅力と価格の伝え方", "誰に何を届けるか一文で書く"], ["💰", "お金", "今の支出を見直すポイントは？", "習慣的な出費と優先順位", "一週間の支出を振り返る"], ["💰", "お金", "豊かさを感じるために必要なことは？", "満足感と持っている資源", "すでにある支えを三つ数える"], ["🫂", "人間関係", "苦手な人とどう付き合えばいい？", "距離感と必要な対話", "守りたい境界線を一つ決める"], ["🫂", "人間関係", "家族との関係で意識することは？", "家庭内の安心と役割分担", "自分の希望を短く伝える"], ["🫂", "人間関係", "友人との距離感をどう保つ？", "親しさと自分の時間", "無理なく続く連絡頻度を考える"], ["🫂", "人間関係", "人に振り回されないためには？", "自分の意思と相手への配慮", "引き受ける前に一度考える"], ["🫂", "人間関係", "今の人間関係で見直すことは？", "関係の偏りと信頼", "疲れる場面と安心する場面を書き出す"], ["🌙", "心", "今のモヤモヤを整理するには？", "感情の輪郭と原因", "気持ちに名前をつける"], ["🌙", "心", "自分の本音に気づくには？", "期待と本当の希望の違い", "誰にも見せないメモに本音を書く"], ["🌙", "心", "手放した方がいい考え方は？", "固定観念と選び直し", "自分に課している「べき」を一つ見つける"], ["🌙", "心", "自信を育てるためには？", "自己評価と積み重ね", "できたことを一つ記録する"], ["🌙", "心", "今の自分に必要な休息やケアは？", "負担と回復のバランス", "休める時間を先に確保する"], ["🌟", "未来", "今日意識したいテーマは？", "今日の優先事項と心構え", "今日できる小さな行動を一つ選ぶ"], ["🌟", "未来", "目標に近づくための一歩は？", "目標の具体化と行動", "最初の15分でできる作業を決める"], ["🌟", "未来", "迷っている計画をどう考える？", "可能性と懸念の整理", "メリットと不安を両方書く"], ["🌟", "未来", "新しい挑戦で意識することは？", "挑戦の動機と準備", "試す範囲と期限を決める"], ["🌟", "未来", "これからの自分が伸ばすべき力は？", "成長の方向と継続", "伸ばしたい力を一つ選んで練習する"]];
 let category=0,mode='astro',draw=null,busy=false;
 const el=id=>document.getElementById(id);
@@ -169,36 +169,83 @@ function cardSection(ctx,label,text,x,y,width,bodyFont){
   for(const line of wrap(ctx,text,width)){if(line){ctx.fillText(line,x,y)}y+=51}
   return y+30;
 }
+
+let a4Pages=[],a4Index=0;
+function showA4(n){
+ a4Index=Math.max(0,Math.min(a4Pages.length-1,n));
+ el('savePreview').src=a4Pages[a4Index];
+ el('pageControls').style.display=a4Pages.length>1?'flex':'none';
+ el('pageCounter').textContent=`${a4Index+1} / ${a4Pages.length} ページ`;
+ el('prevPage').disabled=a4Index===0;el('nextPage').disabled=a4Index===a4Pages.length-1;
+ el('saveOverlayHelp').textContent=`📸 ${a4Index+1}ページ目を長押し保存してな。${a4Pages.length>1?'2枚とも保存してな！':''}`;
+}
+el('prevPage').onclick=()=>showA4(a4Index-1);
+el('nextPage').onclick=()=>showA4(a4Index+1);
+function a4Canvas(page,total){
+ const c=document.createElement('canvas');c.width=1240;c.height=1754;
+ const g=c.getContext('2d');if(!g)throw Error('Canvasを利用できません');
+ g.fillStyle='#fffaf2';g.fillRect(0,0,1240,1754);
+ g.fillStyle='#38204e';g.fillRect(0,0,1240,242);
+ g.strokeStyle='#b49456';g.lineWidth=5;g.strokeRect(30,30,1180,1694);
+ g.lineWidth=2;g.strokeRect(44,44,1152,1666);
+ g.textAlign='center';g.fillStyle='#efcf92';g.font='37px serif';g.fillText('☉    ☽    ♈    ♎    ✦    ♓    ♌',620,94);
+ g.font='bold 58px -apple-system,"Hiragino Sans",sans-serif';g.fillText('星のサイコロ相談室',620,168);
+ g.font='27px -apple-system,"Hiragino Sans",sans-serif';g.fillText((mode==='black'?'黒うめこ':'本格占星術')+'  |  星読み鑑定書',620,215);
+ g.strokeStyle='#b49456';g.beginPath();g.moveTo(85,1632);g.lineTo(1155,1632);g.stroke();
+ g.fillStyle='#5d466b';g.textAlign='left';g.font='24px sans-serif';g.fillText('うめこ屋  |  ASTRO DICE',90,1672);
+ g.textAlign='right';g.fillText(`${page} / ${total}`,1150,1672);
+ g.textAlign='center';g.font='19px sans-serif';g.fillText('※星の象徴による自己理解のヒントです。未来や他人の本心を断定しません。',620,1710);
+ return {c,g};
+}
+function a4Layout(ctx,blocks,font){
+ const lh=Math.round(font*1.55);
+ return blocks.map(([title,body])=>{ctx.font=`${font}px -apple-system,"Hiragino Sans",sans-serif`;const lines=wrap(ctx,body,1040);return {title,lines,height:55+lines.length*lh+24}});
+}
+function a4Split(blocks){
+ const pages=[[]];let used=0;
+ for(const b of blocks){
+  if(used+b.height>1290&&pages[0].length&&pages.length===1){pages.push([]);used=0}
+  pages[pages.length-1].push(b);used+=b.height;
+ }
+ return {pages,ok:pages.every(p=>p.reduce((n,b)=>n+b.height,0)<=1290)};
+}
 el('save').onclick=async()=>{
  if(!draw)return;
- const btn=el('save');btn.disabled=true;btn.textContent='📸 画像を作成中…';
+ const btn=el('save');btn.disabled=true;btn.textContent='📄 A4鑑定書を作成中…';
  try{
-  const d=data(),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');
-  if(!ctx)throw Error('Canvasが使えません');
-  const W=1080,pad=88,usable=W-pad*2,bodyFont='32px -apple-system,"Hiragino Sans","Yu Gothic",sans-serif';
-  const intro=d.reading;
-  const sections=[['✦ 今回のテーマ',d.headline],['✧ 星からのメッセージ',intro],['✦ 現実での活かし方',d.action]];
-  if(mode==='black')sections.push(['😈 黒うめこの監査結果',d.black]);
-  // 必ず本文フォントを設定してから折り返し・高さを計測。
-  let estimated=590+cardLines(ctx,"質問："+d.c[2],bodyFont,usable).length*50;
-  for(const [label,body] of sections){estimated+=60+cardLines(ctx,body,bodyFont,usable).length*51+30}
-  const art=await loadCardArt();const artHeight=art?380:0;
-  canvas.width=W;canvas.height=Math.ceil(Math.max(1500,estimated+artHeight+280));
-  const h=canvas.height,gr=ctx.createLinearGradient(0,0,W,h);gr.addColorStop(0,'#39204e');gr.addColorStop(.55,'#211839');gr.addColorStop(1,'#0b1730');ctx.fillStyle=gr;ctx.fillRect(0,0,W,h);
-  ctx.strokeStyle='#e7bd78';ctx.lineWidth=7;ctx.strokeRect(24,24,W-48,h-48);ctx.lineWidth=2;ctx.strokeRect(40,40,W-80,h-80);ctx.save();ctx.globalAlpha=.22;ctx.translate(W/2,Math.min(570,h*.3));for(let k=0;k<3;k++){ctx.beginPath();ctx.arc(0,0,240+k*38,0,Math.PI*2);ctx.stroke()}ctx.font='38px serif';ctx.textAlign='center';['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'].forEach((z,i)=>{const a=i*Math.PI/6-Math.PI/2;ctx.fillText(z,Math.cos(a)*290,Math.sin(a)*290)});ctx.restore();
-  ctx.textAlign='center';ctx.fillStyle='#e7c88b';ctx.font='45px serif';ctx.fillText('☉   ☽   ♈   ♎   ✧   ♓   ♌',W/2,110);
-  ctx.font='bold 53px -apple-system,"Hiragino Sans",sans-serif';ctx.fillText('星のサイコロ相談室',W/2,184);
-  ctx.font='28px -apple-system,"Hiragino Sans",sans-serif';ctx.fillStyle='#dcc8ee';ctx.fillText(mode==='astro'?'🔮 本格占星術':'😈 黒うめこ',W/2,238);
-  ctx.textAlign='left';let y=310;ctx.font=bodyFont;ctx.fillStyle='#f8f1ff';
-  for(const line of wrap(ctx,'質問：'+d.c[2],usable)){ctx.fillText(line,pad,y);y+=50}
-  ctx.fillStyle='#f4d598';ctx.font='bold 31px -apple-system,"Hiragino Sans",sans-serif';
-  for(const line of wrap(ctx,`${d.p[1]} × ${d.s[1]} × 第${draw[2]+1}ハウス`,usable)){ctx.fillText(line,pad,y);y+=50}y+=40;
-  for(const [label,body] of sections)y=cardSection(ctx,label,body,pad,y,usable,bodyFont);
-  if(art){const maxW=usable,maxH=artHeight;const scale=Math.min(maxW/art.width,maxH/art.height);const dw=art.width*scale,dh=art.height*scale;ctx.drawImage(art,(W-dw)/2,y+12,dw,dh);y+=dh+36}
-  ctx.font='24px -apple-system,"Hiragino Sans",sans-serif';ctx.fillStyle='#cab9dc';ctx.fillText('※象徴による自己理解のヒントです。',pad,Math.min(y+30,h-132));ctx.fillStyle='#e7c88b';ctx.fillText('みろく流 ASTRO DICE ／ うめこ屋',pad,h-78);
-  el('savePreview').src=canvas.toDataURL('image/png');el('saveOverlay').classList.add('open');
-  el('saveHelp').textContent='保存画像を表示したで。画像を長押しして保存してな。';
- }catch(e){el('saveHelp').textContent='画像生成エラー：'+e.message;alert('画像を作れへんかった：'+e.message)}
+  const d=data(),blocks=[
+   ['ご相談内容',d.c[2]],
+   ['3つの星の出目',`${d.p[1]} × ${d.s[1]} × 第${draw[2]+1}ハウス`],
+   ['今回のテーマ',d.headline],
+   ['星からのメッセージ',d.reading],
+   ['現実での活かし方',d.action]
+  ];
+  if(mode==='black')blocks.push(['黒うめこの監査結果',d.black]);
+  const measure=document.createElement('canvas').getContext('2d');
+  let fit=null;
+  for(let font=34;font>=22;font--){
+   const split=a4Split(a4Layout(measure,blocks,font));
+   if(split.ok){fit={...split,font,lh:Math.round(font*1.55)};break}
+  }
+  if(!fit)throw Error('文章がA4の2枚に収まりません');
+  const art=await loadCardArt();a4Pages=[];
+  for(let i=0;i<fit.pages.length;i++){
+   const {c,g}=a4Canvas(i+1,fit.pages.length);let y=288;
+   for(const b of fit.pages[i]){
+    g.textAlign='left';g.fillStyle='#4b285e';g.font='bold 34px -apple-system,"Hiragino Sans",sans-serif';g.fillText('✦ '+b.title,96,y+35);y+=55;
+    g.fillStyle='#30283a';g.font=`${fit.font}px -apple-system,"Hiragino Sans",sans-serif`;
+    for(const line of b.lines){if(line)g.fillText(line,100,y+fit.lh*.78);y+=fit.lh}
+    y+=24;
+   }
+   if(art&&1600-y>=140){
+    const scale=Math.min(340/art.width,Math.min(270,1585-y)/art.height);
+    g.drawImage(art,(1240-art.width*scale)/2,y+8,art.width*scale,art.height*scale);
+   }
+   a4Pages.push(c.toDataURL('image/png'));
+  }
+  showA4(0);el('saveOverlay').classList.add('open');
+  el('saveHelp').textContent=`A4縦の鑑定書を${a4Pages.length}枚作ったで。各ページを長押しして保存してな。`;
+ }catch(e){el('saveHelp').textContent='作成エラー：'+e.message;alert('鑑定書を作れへんかった：'+e.message)}
  finally{btn.disabled=false;btn.textContent='📸 画像保存'}
 };
 </script></body></html>
